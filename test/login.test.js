@@ -1,10 +1,11 @@
 const request = require('supertest');
 const { expect } = require('chai')
+require('dotenv').config()
 
 describe('Login', () => {
     describe('POST /login', () => { //mocha: estruturar e executar o teste
         it('Deve retornar 200 com um token em string quando usar credenciais válidas', async () => {
-            const resposta = await request('http://localhost:3000')//Supertest - fazer requisições a API
+            const resposta = await request(process.env.BASE_URL)//Supertest - fazer requisições a API
                 .post('/login')
                 .set('Content-Type', 'application/json')//como seto o cabeçalho para essa requisição
                 .send({
