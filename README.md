@@ -1,12 +1,10 @@
-# banco-api-tests
-
-## Objetivo do Projeto
+## 1. Objetivo do Projeto
 
 Este projeto consiste em uma suíte de testes de automação para a API REST do sistema bancário, disponível no repositório [juliodelimas/banco-api](https://github.com/juliodelimas/banco-api).
 
 O principal objetivo é contribuir com a qualidade e a estabilidade dos **endpoints** da API, verificando o correto funcionamento das operações de criação, leitura, atualização e exclusão (CRUD), bem como cenários de autenticação e validação de dados.
 
-## Stack Tecnológica
+## 2. Stack Tecnológica
 
 O projeto é desenvolvido em **JavaScript** e utiliza um conjunto de bibliotecas Node.js amplamente reconhecidas para a automação de testes de API.
 
@@ -20,43 +18,52 @@ O projeto é desenvolvido em **JavaScript** e utiliza um conjunto de bibliotecas
 
 As dependências completas do projeto estão listadas no arquivo `package.json`.
 
-## Estrutura de Diretórios
+## 3. Estrutura de Diretórios
 
-A estrutura de pastas e arquivos segue o padrão recomendado para projetos de automação de testes Node.js:
-
-banco-api-tests/
-├── test/                \# Arquivo de testes para o módulo Login/Autenticação
-│   ├── login.test.js    
-│   └── transferencias.test.js  
-├── mochawesome-report/ 
-├── .env                \# Arquivo para configuração da variável BASE_URL
-├── .gitignore
-├── package.json
-└── README.md
+A estrutura de pastas e arquivos reflete a organização do projeto de testes, separando dados de entrada (`fixtures`), funções utilitárias (`helpers`), e os próprios testes (`test`):
 
 ```
 
-## Configuração (Variáveis de Ambiente)
+.
+├── .env                 \# Variável de ambiente com a BASE\_URL (necessita ser criada)
+├── .gitignore
+├── fixtures/            \# Arquivos JSON com dados de teste (payloads, massas de teste)
+│   ├── postLogin.json
+│   └── postTransferencias.json
+├── helpers/             \# Módulos com funções utilitárias e métodos de apoio
+│   └── autenticacao.js  \# Exemplo de helper para obter token de autenticação
+├── mochawesome-report/  \# Diretório para o relatório HTML (gerado automaticamente)
+│   ├── assets
+│   ├── mochawesome.html \# Relatório final de execução
+│   └── mochawesome.json
+├── node\_modules/        \# Dependências do projeto (ignorada pelo Git)
+├── package-lock.json
+├── package.json
+└── test/                \# Suíte principal de testes
+├── login.test.js    \# Testes para o endpoint de Login
+└── transferencia.test.js \# Testes para o endpoint de Transferências
 
-Para que os testes possam se conectar à API, é necessário configurar a URL base da aplicação.
+```
 
-Crie um arquivo chamado **`.env`** na raiz do projeto com o seguinte conteúdo:
+## 4. Configuração da URL Base (`.env`)
+
+Para que os testes possam se comunicar com a API corretamente, é necessário definir a URL base da aplicação em uma variável de ambiente.
+
+Crie um arquivo chamado **`.env`** na raiz do projeto com a seguinte variável:
 
 ```
 
 # .env
 
-# Variável obrigatória que define a URL base da API a ser testada.
-
-# Exemplo: Se a API estiver rodando localmente na porta 3000, use http://localhost:3000
+# Defina o endereço da API que será testada.
 
 BASE\_URL=http://localhost:3000
 
 ````
 
-> **Atenção:** Certifique-se de que a API alvo (`banco-api`) esteja em execução antes de rodar os testes.
+> **Nota:** Certifique-se de que a API de destino esteja em execução no endereço configurado antes de iniciar os testes.
 
-## Execução dos Testes e Relatórios
+## 5. Execução dos Testes e Relatórios
 
 Siga os passos abaixo para instalar as dependências e executar a suíte de testes.
 
@@ -78,17 +85,17 @@ npm test
 
 ### 3\. Visualização do Relatório
 
-Após a execução dos testes, o relatório interativo em HTML será gerado e salvo no diretório `reports/`.
+Após a execução dos testes, o relatório interativo em HTML será gerado e salvo no diretório `mochawesome-report/`.
 
 Para visualizar o resultado, localize e abra o arquivo:
 
 ```
-reports/mochawesome.html
+mochawesome-report/mochawesome.html
 ```
 
 Basta abrir este arquivo em qualquer navegador web.
 
-## Documentação das Dependências
+## 6. Documentação das Dependências
 
 Para aprender mais sobre as ferramentas utilizadas no projeto, consulte a documentação oficial:
 
